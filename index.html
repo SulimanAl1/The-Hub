@@ -25,10 +25,14 @@
         }
 
         .logo {
+            /* تعديل حجم الصورة من هنا - تم رفعه إلى 1000 */
             width: 800px; 
             height: auto;
-            max-width: 90vw; /* عشان ما تطلع برا الشاشة في الجوال */
+            max-width: 95vw; 
             margin-bottom: 15px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         h1 {
@@ -117,6 +121,7 @@
             color: #b84e60;
             font-size: 22px;
             line-height: 1.4;
+            font-weight: bold;
         }
 
         ul#places-list {
@@ -173,7 +178,7 @@
 <body>
 
     <header>
-        <img src="data:https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGb8nhZ_teZfo9uiZh5pA5vjoSRo9h5EKvBQ&s" alt="The Hub Logo" class="logo">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGb8nhZ_teZfo9uiZh5pA5vjoSRo9h5EKvBQ&s" alt="The Hub Logo" class="logo">
         
         <div id="intro-text">
             <h1>Welcome to The Hub</h1>
@@ -185,15 +190,15 @@
         <div id="login-view">
             <label for="User">User</label>
             <select id="User">
-                <option value="" disabled selected>Who's this?</option>
-                <option value="Sulaiman">Sulaiman</option>
+                <option value="" disabled selected hidden>Who's this?</option>
+                <option value="Afra">Afra</option>
                 <option value="Dhabia">Dhabia</option>
+                <option value="Fatima">Fatima</option>
                 <option value="Mahra">Mahra</option>
+                <option value="Ms. Aliya">Ms. Aliya</option>
                 <option value="Nouf">Nouf</option>
                 <option value="Salama">Salama</option>
-                <option value="Afra">Afra</option>
-                <option value="Fatima">Fatima</option>
-                <option value="Ms. Aliya">Ms. Aliya</option>
+                <option value="Sulaiman">Sulaiman</option>
             </select>
 
             <label for="password">Password</label>
@@ -208,8 +213,7 @@
             <h2 id="welcome-message"></h2>
             <input type="text" id="search-bar" placeholder="Search for a department or center..." oninput="filterLocations()">
             
-            <ul id="places-list">
-                </ul>
+            <ul id="places-list"></ul>
 
             <div id="location-result">
                 <h3 id="result-name">Department Name</h3>
@@ -219,7 +223,6 @@
     </div>
 
     <script>
-        // Data containing all departments and their locations
         const departments = [
             { name: "The Hub", location: "MF3, GF (Male Promenade) / FF3, GF (Female Promenade)" },
             { name: "Students Accessibility Services (SAS)", location: "LIBRARY, First Floor" },
@@ -239,13 +242,11 @@
             { name: "Business Center", location: "GF, Library" }
         ];
 
-        // --- Login Logic ---
         function login() {
             const User = document.getElementById('User').value;
             const password = document.getElementById('password').value;
             const errorMsg = document.getElementById('error-msg');
 
-            // التأكد من أن المستخدم اختار اسماً فعلياً وليس "Who's this?"
             if (!User) {
                 errorMsg.textContent = "Please select a user.";
                 errorMsg.style.display = 'block';
@@ -254,9 +255,9 @@
 
             let correctPassword;
             if (User === "Ms. Aliya") {
-                correctPassword = "AliyaZ11111"; // باسوورد خاص
+                correctPassword = "AliyaZ11111"; 
             } else {
-                correctPassword = User + "!!"; // الباسوورد الافتراضي للبقية
+                correctPassword = User + "!!"; 
             }
 
             if (password === correctPassword) {
@@ -264,7 +265,6 @@
                 document.getElementById('intro-text').style.display = 'none';
                 document.getElementById('main-view').style.display = 'block';
                 
-                // تغيير رسالة الترحيب
                 const welcomeMsg = document.getElementById('welcome-message');
                 welcomeMsg.innerHTML = "Welcome " + User + "!<br>What place are you looking for?";
                 
@@ -275,7 +275,6 @@
             }
         }
 
-        // --- Search & Display Logic ---
         const listElement = document.getElementById('places-list');
         const searchInput = document.getElementById('search-bar');
         const resultDiv = document.getElementById('location-result');
@@ -284,7 +283,6 @@
 
         function renderList(items) {
             listElement.innerHTML = ''; 
-            
             items.forEach(dept => {
                 const li = document.createElement('li');
                 li.textContent = dept.name;
@@ -299,13 +297,11 @@
                 dept.name.toLowerCase().includes(query)
             );
             renderList(filtered);
-            
             resultDiv.style.display = 'none';
         }
 
         function showLocation(department) {
             resultName.textContent = department.name;
-            
             let formattedLocation = department.location;
             if(formattedLocation === "ADMIN, GF") formattedLocation = "Administration Building, Ground Floor (GF)";
             if(formattedLocation === "ADMIN, First Floor") formattedLocation = "Administration Building, First Floor";
