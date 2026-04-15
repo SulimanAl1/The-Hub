@@ -170,8 +170,8 @@
 
     <div class="container">
         <div id="login-view">
-            <label for="username">Username</label>
-            <select id="username">
+            <label for="User">User</label>
+            <select id="User">
                 <option value="Sulaiman">Sulaiman</option>
                 <option value="Dhabia">Dhabia</option>
                 <option value="Mahra">Mahra</option>
@@ -226,12 +226,12 @@
 
         // --- Login Logic ---
         function login() {
-            const username = document.getElementById('username').value;
+            const User = document.getElementById('USer').value;
             const password = document.getElementById('password').value;
             const errorMsg = document.getElementById('error-msg');
 
             // The required password format is Name***
-            const correctPassword = username + "!!";
+            const correctPassword = User + "!!";
 
             if (password === correctPassword) {
                 document.getElementById('login-view').style.display = 'none';
