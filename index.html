@@ -25,7 +25,8 @@
         }
 
         .logo {
-            max-width: 500px; /* حجم الصورة الكبير */
+            /* >>> من هنا تقدر تعدل حجم الصورة متى ما بغيت <<< */
+            max-width: 350px; 
             margin-bottom: 15px;
         }
 
@@ -226,11 +227,12 @@
 
         // --- Login Logic ---
         function login() {
-            const User = document.getElementById('USer').value;
+            // >>> التعديل هنا: غيرنا USer إلى User عشان يتطابق مع الـ ID اللي فوق <<<
+            const User = document.getElementById('User').value;
             const password = document.getElementById('password').value;
             const errorMsg = document.getElementById('error-msg');
 
-            // The required password format is Name***
+            // The required password format is Name!!
             const correctPassword = User + "!!";
 
             if (password === correctPassword) {
