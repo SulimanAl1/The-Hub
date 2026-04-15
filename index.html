@@ -178,6 +178,7 @@
                 <option value="Nouf">Nouf</option>
                 <option value="Salama">Salama</option>
                 <option value="Afra">Afra</option>
+                <option value="Fatima">Fatima</option>
             </select>
 
             <label for="password">Password</label>
@@ -230,7 +231,7 @@
             const errorMsg = document.getElementById('error-msg');
 
             // The required password format is Name***
-            const correctPassword = username + "***";
+            const correctPassword = username + "!!";
 
             if (password === correctPassword) {
                 document.getElementById('login-view').style.display = 'none';
