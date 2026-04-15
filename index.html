@@ -25,8 +25,10 @@
         }
 
         .logo {
-            /* >>> من هنا تقدر تعدل حجم الصورة متى ما بغيت <<< */
-            max-width: 1000px; 
+            /* استخدمنا width عشان نجبر الصورة تكبر */
+            /* تقدر تغير الرقم 450px لأي رقم تبيه عشان تكبر أو تصغر الصورة */
+            width: 450px; 
+            max-width: 90vw; /* عشان ما تخترب على شاشات الجوال */
             margin-bottom: 15px;
         }
 
@@ -110,6 +112,14 @@
             display: none; 
         }
 
+        #welcome-message {
+            margin-top: 0;
+            text-align: center;
+            color: #b84e60;
+            font-size: 22px;
+            line-height: 1.4;
+        }
+
         ul#places-list {
             list-style-type: none;
             padding: 0;
@@ -191,7 +201,7 @@
         </div>
 
         <div id="main-view">
-            <h2 style="margin-top: 0;">Find a Location</h2>
+            <h2 id="welcome-message">Find a Location</h2>
             <input type="text" id="search-bar" placeholder="Search for a department or center..." oninput="filterLocations()">
             
             <ul id="places-list">
@@ -227,17 +237,22 @@
 
         // --- Login Logic ---
         function login() {
-            // >>> التعديل هنا: غيرنا USer إلى User عشان يتطابق مع الـ ID اللي فوق <<<
+            // انتبه: الجافاسكربت حساس للأحرف، خليناها User بدل USer عشان تشتغل صح
             const User = document.getElementById('User').value;
             const password = document.getElementById('password').value;
             const errorMsg = document.getElementById('error-msg');
 
-            // The required password format is Name!!
+            // الباسوورد المطلوب هو الاسم مع !!
             const correctPassword = User + "!!";
 
             if (password === correctPassword) {
                 document.getElementById('login-view').style.display = 'none';
                 document.getElementById('main-view').style.display = 'block';
+                
+                // هنا نغير رسالة الترحيب باسم المستخدم اللي دخل
+                const welcomeMsg = document.getElementById('welcome-message');
+                welcomeMsg.innerHTML = "Welcome " + User + "!<br>What place are you looking for?";
+                
                 renderList(departments);
             } else {
                 errorMsg.style.display = 'block';
